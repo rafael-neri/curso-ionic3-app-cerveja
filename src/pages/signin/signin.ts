@@ -1,42 +1,42 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ForgotPasswordPage } from '../forgot-password/forgot-password';
+import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
-/**
- * Generated class for the SigninPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
-@IonicPage()
+//Services
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
+
 @Component({
   selector: 'page-signin',
   templateUrl: 'signin.html',
 })
 export class SigninPage {
-  email:string = "";
-  password:string = "";
+  email: string = '';
+  password: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    private api: AuthenticationProvider
+  ) { }
+
+  forgotPassword() {
+    this.navCtrl.push(ForgotPasswordPage, {
+      email: this.email
+    });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SigninPage');
+  signup() {
+    this.navCtrl.push(SignupPage)
   }
 
-  signin(){
-    console.log("Click!");
-    console.log(this.email);
-    console.log(this.password);
+  signin() {
+    this.api.login(this.email.trim().toLowerCase(), this.password)
+      .then(dado => {
+        this.navCtrl.setRoot(HomePage, {}, {
+          animate: true, 
+          direction: 'forward'
+        });
+      });
   }
-
-  signup(){
-    this.navCtrl.push(SignupPage);
-  }
-
-  forgotPassword(){
-    this.navCtrl.push(ForgotPasswordPage);
-  }
-
 }

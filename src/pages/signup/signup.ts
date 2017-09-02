@@ -1,29 +1,38 @@
+import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { User } from '../../models/user';
 
-/**
- * Generated class for the SignupPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-  user = { name:'', email : '', confirmEmai: '', password:'', confirmPassword:''};
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user = { name: '', email: '', confirmEmail: '', password: '', confirmPassword: '' }
+
+  submitted = false;
+
+  constructor(
+    public navCtrl: NavController,
+    private api: AuthenticationProvider) {
+      console.log(this.user);
+     }
+
+  onSubmit() {
+    this.api.signup(this.user)
+    .then(data => {
+      this.navCtrl.pop();
+    })
+    .catch(err => {
+      console.log("Error:", err);
+    })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+  saveUser() {
   }
 
-  onSubmit(){
-    console.log("OK!");
+  back() {
+    this.navCtrl.pop();
   }
 
 }

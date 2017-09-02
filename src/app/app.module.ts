@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { FormsModule }   from '@angular/forms';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -10,19 +12,28 @@ import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 
+//Services
+import { AuthenticationProvider } from '../providers/authentication/authentication';
+
+//Modules
+import { IonicStorageModule } from '@ionic/storage';
+import { UserInfoProvider } from '../providers/user-info/user-info';
+import { PartnersProvider } from '../providers/partners/partners';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SigninPage,
     SignupPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
   ],
   imports: [
+    HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp,{
-      backButtonText: 'Voltar'
-    })
+    FormsModule,
+    IonicStorageModule.forRoot(),
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,12 +41,15 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
     HomePage,
     SigninPage,
     SignupPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthenticationProvider,
+    UserInfoProvider,
+    PartnersProvider,
   ]
 })
 export class AppModule {}

@@ -1,3 +1,35 @@
 page-home {
-
-}
+    .scroll-content{
+      background: url(../assets/bg/bg-black.jpg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      background-size: cover;
+      text-align: center;
+  
+      .grid{
+        padding: 0;
+        .col{
+          padding: 0;
+        }
+      }
+      .card{
+        height: 200px;
+        border-radius: 5px;
+  
+        .card-title{
+          font-weight: bold;
+          padding: 0;
+          font-size: 1.4rem;
+        }
+        .card p{
+          font-size: 1.2rem;
+        }
+        .card-content{
+          padding: 1.5px;
+        }
+        img{
+          height: 130px;
+        }
+      }
+    }
+  
+  } 
