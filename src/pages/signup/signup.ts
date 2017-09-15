@@ -14,18 +14,16 @@ export class SignupPage {
 
   constructor(
     public navCtrl: NavController,
-    private api: AuthenticationProvider) {
-      console.log(this.user);
-     }
+    private api: AuthenticationProvider) { }
 
   onSubmit() {
-    this.api.signup(this.user)
-    .then(data => {
-      this.navCtrl.pop();
-    })
-    .catch(err => {
-      console.log("Error:", err);
-    })
+    this.api.postAccount(this.user)
+      .then(dado => {
+        this.navCtrl.pop();
+      })
+      .catch(err => {
+        console.log("Error: ", err);
+      });
   }
 
   saveUser() {

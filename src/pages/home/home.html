@@ -1,8 +1,28 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Parceiros</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 *ngFor="let partners of indexOfPartners">
+        <ion-card (tap)="goToBar(partners)" tappable>
+          <img [src]="partners.photo" />
+          <ion-card-content>
+            <ion-card-title>
+              {{ partners.name | truncate }}
+            </ion-card-title>
+            <p>{{ partners.address }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content>
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

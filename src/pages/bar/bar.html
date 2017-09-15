@@ -1,0 +1,85 @@
+<!--
+  Generated template for the BarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ barInfo.name }}</ion-title>
+    
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <drink
+    [name]="drink.name"
+    [size]="drink.size"
+    [photoUrl]="drink.photo"
+    [description]="drink.description"
+    [beerType]="drink.beer_type"
+    *ngIf="drinkComponent"
+    (tap)="exit()"
+    (interest)="interestEvent($event)">
+  </drink>
+
+  <div class="image-wrapper">
+    <img [src]="barInfo.photo">
+    <div class="info">
+      <span class="bar-name">{{barInfo.name}}</span><br />
+      <span class="bar-address">      
+          <ion-icon name="pin"></ion-icon>
+          {{barInfo.address}}
+      </span>
+    </div>
+  </div>
+  <div padding> <!-- bota 16px de padding em todo conteúdo -->
+    <div>
+      <p>{{barInfo.description}}</p>
+    </div>
+    <div class="info-wrapper">
+      <h2>ENDEREÇO</h2>
+      <p> 
+        <ion-icon name="pin"></ion-icon>
+        {{barInfo.address}}
+      </p>
+    </div>
+    <div class="info-wrapper">
+      <h2>TELEFONE</h2>
+      <p>  
+        <ion-icon name="call"></ion-icon>
+        {{barInfo.phone}}
+      </p>
+    </div>
+    <div class="info-wrapper">
+      <h2>HORÁRIO</h2>
+      <p> 
+        <ion-icon name="time"></ion-icon>
+        {{barInfo.opening_hours}}
+      </p>
+    </div>
+    <h2>OPÇÕES DE CERVEJAS</h2>
+    <ion-slides>
+      <ion-slide *ngFor="let drink of barInfo.drinks">
+        <ion-card (tap)="chooseDrink(drink)" tappable>
+          <img src="{{drink.photo}}"/>
+          <ion-card-content>
+            <ion-card-title>
+              {{drink.name}}
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+</ion-content>

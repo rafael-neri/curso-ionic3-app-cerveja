@@ -23,6 +23,20 @@
   background-color: color($colors, SCdarkyellow);
 }
 
+.header-ios .toolbar-background-ios{
+  background-color: color($colors, SCyellow);
+}
+
+.header-md .toolbar-background-md{
+  background-color: color($colors, SCyellow);
+}
+
+.toolbar{
+  .button-inner{
+    color: black;
+  }
+}
+
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These

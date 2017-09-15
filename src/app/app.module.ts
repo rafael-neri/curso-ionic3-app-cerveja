@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
+import { BarPage } from './../pages/bar/bar';
 
 //Services
 import { AuthenticationProvider } from '../providers/authentication/authentication';
@@ -20,6 +21,12 @@ import { IonicStorageModule } from '@ionic/storage';
 import { UserInfoProvider } from '../providers/user-info/user-info';
 import { PartnersProvider } from '../providers/partners/partners';
 
+//Pipes
+import { TruncatePipe } from './../pipes/truncate/truncate';
+
+//Components
+import { DrinkComponent } from '../components/drink/drink';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -27,6 +34,9 @@ import { PartnersProvider } from '../providers/partners/partners';
     SigninPage,
     SignupPage,
     ForgotPasswordPage,
+    TruncatePipe,
+    BarPage,
+    DrinkComponent
   ],
   imports: [
     HttpModule,
@@ -42,14 +52,17 @@ import { PartnersProvider } from '../providers/partners/partners';
     SigninPage,
     SignupPage,
     ForgotPasswordPage,
+    BarPage,
+    DrinkComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthenticationProvider,
     UserInfoProvider,
     PartnersProvider,
+    UserInfoProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
